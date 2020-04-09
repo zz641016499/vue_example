@@ -7,5 +7,8 @@ modules.exports = {
   },
   c:(a,b)=>{
     return a*b
+  },
+  d:(a,b)=>{
+    return a/b
   }
 };
