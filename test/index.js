@@ -5,4 +5,7 @@ modules.exports = {
   b: (a, b) => {
     return a - b;
   },
+  c:(a,b)=>{
+    return a*b
+  }
 };
