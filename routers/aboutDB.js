@@ -2,7 +2,7 @@ const Router = require("koa-router");
 
 const router = new Router();
 
-router.get("/list", async (ctx, next) => {
+router.get("/getlist", async (ctx, next) => {
   console.log(ctx.request.query.id, 999);
 
   //创建mysql连接池

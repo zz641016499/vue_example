@@ -9,19 +9,21 @@ const router = new Router();
 const ENV = "kdljflskjf";
 
 //跨域以及设置头
-cors({
-  origin: function (ctx) {
-    if (ctx.url === "/test") {
-      return false;
-    }
-    return "*";
-  },
-  exposeHeaders: ["WWW-Authenticate", "Server-Authorization"],
-  maxAge: 5,
-  credentials: true,
-  allowMethods: ["GET", "POST", "DELETE"],
-  allowHeaders: ["Content-Type", "Authorization", "Accept"],
-});
+app.use(
+  cors({
+    origin: function (ctx) {
+      if (ctx.url === "/test") {
+        return false;
+      }
+      return "*";
+    },
+    exposeHeaders: ["WWW-Authenticate", "Server-Authorization"],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ["GET", "POST", "DELETE"],
+    allowHeaders: ["Content-Type", "Authorization", "Accept"],
+  })
+);
 
 //接收post请求参数解析
 app.use(
@@ -30,7 +32,6 @@ app.use(
   })
 );
 
-
 //全局中间件
 app.use(async (ctx, next) => {
   console.log("全局中间件");
@@ -38,8 +39,12 @@ app.use(async (ctx, next) => {
   await next();
 });
 
-const somethingList = require("./routers/somethingList");
-router.use("/somethingList", somethingList.routes());
+//操作数据库模块
+const aboutDB = require("./routers/aboutDB");
+router.use("/aboutDB", aboutDB.routes());
+//测试模块
+const test = require("./routers/test");
+router.use("/test", test.routes());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
