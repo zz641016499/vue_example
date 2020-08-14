@@ -41,14 +41,14 @@ app.use(async (ctx, next) => {
 
 //操作数据库模块
 const aboutDB = require("./routers/aboutDB");
-router.use("/aboutDB", aboutDB.routes());
+router.use("/api/aboutDB", aboutDB.routes());
 //测试模块
 const test = require("./routers/test");
-router.use("/test", test.routes());
+router.use("/api/test", test.routes());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(4000, () => {
+app.listen(80, () => {
   console.log("4000端口服务已经打开");
 });
